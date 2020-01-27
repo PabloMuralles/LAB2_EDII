@@ -7,9 +7,37 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Lab2_arbolB.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+ 
     public class BebidasController : ControllerBase
     {
+        [HttpGet]
+        [Route("api/list")]
+
+        public ActionResult<string> List()
+        {
+
+            return "";
+        }
+
+        [HttpGet]
+        [Route("api/element")]
+
+        public ActionResult<string> Element()
+        {
+            return "";
+
+        }
+
+
+        [HttpPost]
+        [Route("api/insert")]
+
+        public ActionResult Create([FromBody] Nodo Soda)
+        {
+
+
+        }
+
+
     }
 }
