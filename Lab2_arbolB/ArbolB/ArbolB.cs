@@ -16,10 +16,10 @@ namespace Lab2_arbolB.ArbolB
                 return _instance;
             }
         }
-
+          
         public void Add()
         {
-
+            
         }
         public void find()
         {
