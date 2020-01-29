@@ -7,14 +7,9 @@ namespace Lab2_arbolB
 {
     public class Nodo<T> where T : IComparable<T>
     {
-        public string Name { get; set; }
-        public string flavoe { get; set; }
-        public int inventory { get; set; }
-        public double price { get; set; }
-        public string Made { get; set; }
-
-        T[] Valore = new T[5-1];
-        Nodo<T>[] hijos = new Nodo<T>[5];
-
+        public Nodo<T> Raiz;
+        public List<object> datos = new List<object>();
+        public List<Nodo<T>> hijos = new List<Nodo<T>>();
+        public Bebidas bebidas;
     }
 }
