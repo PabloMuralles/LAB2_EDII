@@ -16,12 +16,16 @@ namespace Lab2_arbolB
                 return _instance;
             }
         }
-        public Nodo<T> raiz = null;
-        public List<Nodo<T>> auxiliar = new List<Nodo<T>>();
-        int grado = 5;
-        #region Metodos
-        public void Crear(string N, string f, int i, double p, string M)
+        public static int grado = 5;
+        public Nodo raiz = null;
+        public Nodo[] auxiliar = new Nodo[grado - 1];
+        #region Metodos    
+        public void ArbolOrden()
         {
+            raiz.nodos(grado);
+        }
+        public void Crear(string N, string f, int i, double p, string M)
+        {            
             new Bebidas()
             {
                 Name = N,
@@ -30,21 +34,13 @@ namespace Lab2_arbolB
                 price = p,
                 Made = M,
             };
-            Bebidas bebidas = new Bebidas();
-            raiz.bebidas = bebidas;
-            Add(raiz.bebidas);
-        }
+           
+         }
         public void Add(object value)
         {
             if(raiz == null)
             {
-                raiz = new Nodo<T>();
-                if (raiz.hijos == null || raiz.datos.Count < grado-1)
-                {
-                    raiz.datos.Add(value);
-                   Ordenar(raiz.datos); 
-                    
-                }
+                raiz = new Nodo();
 
              
             }

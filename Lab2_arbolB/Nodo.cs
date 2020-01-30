@@ -5,11 +5,15 @@ using System.Threading.Tasks;
 
 namespace Lab2_arbolB
 {
-    public class Nodo<T> where T : IComparable<T>
-    {
-        public Nodo<T> Raiz;
-        public List<object> datos = new List<object>();
-        public List<Nodo<T>> hijos = new List<Nodo<T>>();
-        public Bebidas bebidas;
+    public class Nodo
+    { 
+        public Nodo padre;        
+        public Nodo[] hijos = new Nodo[grado];
+        public Bebidas[] nodos(int k)
+        {
+           Bebidas[] datos = new Bebidas[k - 1];
+            return datos;
+        }
+
     }
 }
