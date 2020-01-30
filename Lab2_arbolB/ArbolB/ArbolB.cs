@@ -19,36 +19,28 @@ namespace Lab2_arbolB
         public static int grado = 5;
         public Nodo raiz = null;
         public Nodo[] auxiliar = new Nodo[grado - 1];
-        #region Metodos    
-        public void ArbolOrden()
+        #region Metodos          
+        public void Add(string N, string f, int i, double p, string M)
         {
-            raiz.nodos(grado);
-        }
-        public void Crear(string N, string f, int i, double p, string M)
-        {            
-            new Bebidas()
+            if (raiz == null)
             {
-                Name = N,
-                flavoe = f,
-                inventory = i,
-                price = p,
-                Made = M,
-            };
-           
-         }
-        public void Add(object value)
-        {
-            if(raiz == null)
-            {
-                raiz = new Nodo();
-
-             
+                raiz = new Nodo();  /////
+                raiz.datos[0] = new Bebidas()
+                {
+                    Name = N,
+                    flavoe = f,
+                    inventory = i,
+                    price = p,
+                    Made = M,
+                };
             }
-        }
-        void Ordenar(List<object> ordenamiento)
-        {
-            ordenamiento.Sort();
-        }
+            else 
+            {
+                raiz = new Nodo();  /////
+
+            
+            }
+        }        
         #endregion
     }
 }
