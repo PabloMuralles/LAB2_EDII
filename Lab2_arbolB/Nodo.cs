@@ -7,13 +7,9 @@ namespace Lab2_arbolB
 {
     public class Nodo
     { 
-        public Nodo padre;        
+        public Nodo padre;
+        static int grado = 5;
+        public Bebidas[] datos = new Bebidas[grado - 1];
         public Nodo[] hijos = new Nodo[grado];
-        public Bebidas[] nodos(int k)
-        {
-           Bebidas[] datos = new Bebidas[k - 1];
-            return datos;
-        }
-
     }
 }

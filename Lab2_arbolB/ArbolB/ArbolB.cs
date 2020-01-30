@@ -25,22 +25,41 @@ namespace Lab2_arbolB
             if (raiz == null)
             {
                 raiz = new Nodo();  /////
-                raiz.datos[0] = new Bebidas()
+               raiz.datos[0] = new Bebidas()
                 {
                     Name = N,
                     flavoe = f,
                     inventory = i,
                     price = p,
                     Made = M,
-                };
+                };               
             }
             else 
             {
-                raiz = new Nodo();  /////
 
-            
+                raiz = new Nodo();  /////
+                for (int num = 1; num > raiz.datos.Length; num++)
+                {
+                  raiz.datos[num] = new Bebidas()
+                  {
+                      Name = N,
+                      flavoe = f,
+                      inventory = i,
+                      price = p,
+                      Made = M,
+                  };
+                   
+                }
+                //int n = 0;
+                //foreach ( var item in raiz.datos)
+                //{                                       
+                //}            
             }
-        }        
+        } 
+        public Bebidas[] Ordenar()
+        {
+            return null;
+        }
         #endregion
     }
 }
