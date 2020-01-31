@@ -5,14 +5,14 @@ using System.Threading.Tasks;
 
 namespace Lab2_arbolB.Almacenamiento
 {
-    public class ArbolB<T> where T : IComparable<T>
+    public class ArbolB
         {
-            private static ArbolB<T> _instance = null;
-            public static ArbolB<T> Instance
+            private static ArbolB _instance = null;
+            public static ArbolB Instance
             {
                 get
                 {
-                    if (_instance == null) _instance = new ArbolB<T>();
+                    if (_instance == null) _instance = new ArbolB();
                     return _instance;
                 }
             }
