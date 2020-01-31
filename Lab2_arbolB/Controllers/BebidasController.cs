@@ -4,12 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Lab2_arbolB.
+
 
 namespace Lab2_arbolB.Controllers
 {
  
     public class BebidasController : ControllerBase
     {
+
         [HttpGet]
         [Route("api/list")]
 
@@ -37,6 +40,8 @@ namespace Lab2_arbolB.Controllers
 
 
         }
+
+
 
 
     }
