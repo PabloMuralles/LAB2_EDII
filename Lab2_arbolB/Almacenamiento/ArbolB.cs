@@ -28,7 +28,7 @@ namespace Lab2_arbolB.Almacenamiento
                     raiz.datos[0] = new Bebidas()
                     {
                         Name = N,
-                        flavoe = f,
+                        flavor = f,
                         inventory = i,
                         price = p,
                         Made = M,
@@ -36,30 +36,43 @@ namespace Lab2_arbolB.Almacenamiento
                 }
                 else
                 {
-
-                    raiz = new Nodo();  /////
-                    for (int num = 1; num > raiz.datos.Length; num++)
+                   int num = 1;
+                    foreach (var espasio in raiz.datos)
                     {
+                        if (espasio == null)
+                        {
                         raiz.datos[num] = new Bebidas()
                         {
                             Name = N,
-                            flavoe = f,
+                            flavor = f,
                             inventory = i,
                             price = p,
                             Made = M,
                         };
-
-                    }
-                    //int n = 0;
-                    //foreach ( var item in raiz.datos)
-                    //{                                       
-                    //}            
+                        }
+                    Ordenar(raiz.datos);
+                    num++;
+                    }                             
                 }
             }
-            public Bebidas[] Ordenar()
+            public void Ordenar(Bebidas[] valores)
             {
-                return null;
+            var lista = valores.ToList();
+            foreach (var iteraciones in valores)
+            {
+                if (iteraciones != null)
+                {
+                    lista.Add(iteraciones);
+                }
             }
+            lista = lista.OrderBy(o => o.Name).ToList();
+            var contador = 0;
+            foreach (var item in lista)
+            {
+                valores[contador] = item;
+                contador++;
+            }
+        }
             #endregion
         }
     
