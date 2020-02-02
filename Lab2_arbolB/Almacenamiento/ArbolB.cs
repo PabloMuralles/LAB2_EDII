@@ -86,7 +86,7 @@ namespace Lab2_arbolB.Almacenamiento
                 auxiliar[entrada] = item;
                 entrada++;
             }
-            auxiliar[entrada + 1] = new Bebidas()
+            auxiliar[entrada] = new Bebidas()
             {
                 Name = N,
                 flavor = f,
@@ -94,26 +94,15 @@ namespace Lab2_arbolB.Almacenamiento
                 price = p,
                 Made = M,
             };
-            var lista = new List<Bebidas>();
-            foreach (var item in auxiliar)
-            {
-                if(item != null)
-                {
-                    lista.Add(item);
-                }
-            }
-            lista = lista.OrderBy(y => y.Name).ToList();
-            var contator = 0;
-            foreach (var item in lista)
-            {
-                auxiliar[contator] = item;
-                contator++;
-            }
+            Ordenar(ref auxiliar);
+
+           // separar();
            }
            public void separar() 
            {
             int mitad = (auxiliar.Length / 2);
-            
+            Array.Clear(raiz.datos,0,3);
+            raiz.datos[0] = auxiliar[mitad];
            }
             #endregion
         }
