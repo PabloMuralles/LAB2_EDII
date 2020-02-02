@@ -18,17 +18,17 @@ namespace Lab2_arbolB.Almacenamiento
             }
             public static int grado = 5;
             public Nodo raiz = null;
-            public Nodo[] auxiliar = new Nodo[grado - 1];
+            public Bebidas[] auxiliar = new Bebidas[grado];
             #region Metodos          
             public void Add(string N, string f, int i, double p, string M)
             {
-                if (raiz == null)
+               if (raiz == null)
                 {
                     raiz = new Nodo();  /////
                     raiz.datos[0] = new Bebidas()
                     {
                         Name = N,
-                        flavoe = f,
+                        flavor = f,
                         inventory = i,
                         price = p,
                         Made = M,
@@ -36,30 +36,74 @@ namespace Lab2_arbolB.Almacenamiento
                 }
                 else
                 {
-
-                    raiz = new Nodo();  /////
-                    for (int num = 1; num > raiz.datos.Length; num++)
+                   int num = 0;
+                    foreach (var espasio in raiz.datos)
                     {
+                        if (espasio == null && num < grado-1)
+                        {
                         raiz.datos[num] = new Bebidas()
                         {
                             Name = N,
-                            flavoe = f,
+                            flavor = f,
                             inventory = i,
                             price = p,
                             Made = M,
                         };
-
+                          break;
+                        }
+                       num++;
+                         if (num == grado-1) // esta lleno
+                         {
+                        Aux(N, f, i, p, M);
+                         }
                     }
-                    //int n = 0;
-                    //foreach ( var item in raiz.datos)
-                    //{                                       
-                    //}            
+                    Ordenar(ref raiz.datos); /// metodo de ordenamiento
                 }
             }
-            public Bebidas[] Ordenar()
+            public void Ordenar(ref Bebidas[] valores)
             {
-                return null;
+            var lista = new List<Bebidas>();
+            foreach (var iteraciones in valores)
+            {
+                if (iteraciones != null)
+                {
+                    lista.Add(iteraciones);
+                }
             }
+            lista = lista.OrderBy( x => x.Name).ToList(); 
+            var contador = 0;
+            foreach (var item in lista)
+            {
+                valores[contador] = item;
+                contador++;
+            }
+        }       
+            public void Aux(string N, string f, int i, double p, string M)
+           {
+            int entrada = 0;
+            foreach (var item in raiz.datos)
+            {
+                auxiliar[entrada] = item;
+                entrada++;
+            }
+            auxiliar[entrada] = new Bebidas()
+            {
+                Name = N,
+                flavor = f,
+                inventory = i,
+                price = p,
+                Made = M,
+            };
+            Ordenar(ref auxiliar);
+
+           // separar();
+           }
+           public void separar() 
+           {
+            int mitad = (auxiliar.Length / 2);
+            Array.Clear(raiz.datos,0,3);
+            raiz.datos[0] = auxiliar[mitad];
+           }
             #endregion
         }
     
