@@ -105,11 +105,11 @@ namespace Lab2_arbolB.Almacenamiento
             nodo[0] = nodo2[mitad];
             Nodo sub = new Nodo();
             sub.padre = inicial;
+            inicial.hijos[0] = sub;
             for (int llenado = 0; llenado < mitad; llenado++)
             {
-                sub.hijos[llenado].datos[llenado] = nodo2[llenado];
-             //   sub = nodo2[llenado];
-             //raiz.hijos[llenado].datos[llenado] = sub;
+                sub.datos[llenado] = nodo2[llenado];
+             
             }
            }
             #endregion
