@@ -96,13 +96,21 @@ namespace Lab2_arbolB.Almacenamiento
             };
             Ordenar(ref auxiliar);
 
-           // separar();
+            separar(ref raiz.datos, auxiliar, raiz);
            }
-           public void separar() 
+           public void separar(ref Bebidas[] nodo, Bebidas[] nodo2, Nodo inicial) /// podria pasar aux como 
            {
             int mitad = (auxiliar.Length / 2);
-            Array.Clear(raiz.datos,0,3);
-            raiz.datos[0] = auxiliar[mitad];
+            Array.Clear(nodo,0,grado-1);
+            nodo[0] = nodo2[mitad];
+            Nodo sub = new Nodo();
+            sub.padre = inicial;
+            for (int llenado = 0; llenado < mitad; llenado++)
+            {
+                sub.hijos[llenado].datos[llenado] = nodo2[llenado];
+             //   sub = nodo2[llenado];
+             //raiz.hijos[llenado].datos[llenado] = sub;
+            }
            }
             #endregion
         }
