@@ -24,7 +24,7 @@ namespace Lab2_arbolB.Almacenamiento
             {
                if (raiz == null)
                 {
-                    raiz = new Nodo();  /////
+                    raiz = new Nodo(); 
                     raiz.datos[0] = new Bebidas()
                     {
                         Name = N,
@@ -33,6 +33,12 @@ namespace Lab2_arbolB.Almacenamiento
                         price = p,
                         Made = M,
                     };
+                }
+                else
+                {
+                if (raiz.hijos[0] != null || raiz.hijos[1] != null)
+                {
+                    insert_sheets(N, f, i, p, M,raiz.datos);
                 }
                 else
                 {
@@ -52,12 +58,13 @@ namespace Lab2_arbolB.Almacenamiento
                           break;
                         }
                        num++;
-                         if (num == grado-1) // esta lleno
+                         if (num == grado-1) /// full
                          {
                         Aux(N, f, i, p, M);
                          }
                     }
-                    Ordenar(ref raiz.datos); /// metodo de ordenamiento
+                    Ordenar(ref raiz.datos); 
+                  } // end add
                 }
             }
             public void Ordenar(ref Bebidas[] valores)
@@ -98,21 +105,38 @@ namespace Lab2_arbolB.Almacenamiento
 
             separar(ref raiz.datos, auxiliar, raiz);
            }
-           public void separar(ref Bebidas[] nodo, Bebidas[] nodo2, Nodo inicial) /// podria pasar aux como 
+           public void separar(ref Bebidas[] nodo, Bebidas[] nodo2, Nodo inicial) 
            {
             int mitad = (auxiliar.Length / 2);
             Array.Clear(nodo,0,grado-1);
-            nodo[0] = nodo2[mitad];
-            Nodo sub = new Nodo();
-            sub.padre = inicial;
-            inicial.hijos[0] = sub;
-            for (int llenado = 0; llenado < mitad; llenado++)
+            nodo[0] = nodo2[mitad]; //index
+            var izq = new Nodo();
+            izq.padre = inicial;
+            inicial.hijos[0] = izq; //index
+            for (int llenado_izq = 0; llenado_izq < mitad; llenado_izq++)
             {
-                sub.datos[llenado] = nodo2[llenado];
-             
+                izq.datos[llenado_izq] = nodo2[llenado_izq];            
+            }
+            var der = new Nodo();
+            inicial.hijos[1] = der; //index + 1
+             int contador = 0;
+            for (int llenado_der = mitad + 1; llenado_der > mitad && llenado_der < nodo2.Length; llenado_der++)
+            {
+                der.datos[contador] = nodo2[llenado_der];
+                contador++;
             }
            }
-            #endregion
+        public void insert_sheets(string N, string f, int i, double p, string M, Bebidas[] nodo)
+        {
+            foreach (var item in nodo)
+            {
+               if (N.CompareTo(item.Name) > 0)
+               {
+
+               }                
+            }
         }
+        #endregion
+    }
     
 }
