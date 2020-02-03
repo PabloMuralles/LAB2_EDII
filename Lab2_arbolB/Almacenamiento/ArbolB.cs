@@ -104,7 +104,49 @@ namespace Lab2_arbolB.Almacenamiento
             Array.Clear(raiz.datos,0,3);
             raiz.datos[0] = auxiliar[mitad];
            }
-            #endregion
+        #endregion
+
+
+
+        #region BUSQUEDA
+
+        public  List<Bebidas> ListaBusqueda = new List<Bebidas>();
+        public void Busar(string nombre)
+        {
+            NombreBusqueda _Nombre = new NombreBusqueda(nombre);
+            for (int i = 0; i < grado - 2; i++)
+            {
+                if ((raiz.datos[i].Name.CompareTo(_Nombre.Name)) == 0)
+                {
+                    ListaBusqueda.Add(new Bebidas
+                    {
+                        Name = raiz.datos[i].Name,
+                        flavor = raiz.datos[i].flavor,
+                        inventory = raiz.datos[i].inventory,
+                        price = raiz.datos[i].price,
+                        Made = raiz.datos[i].Made,
+                    });
+                    
+                }
+
+            }
+            
+
+            
         }
-    
+
+       public List<Bebidas> RetornarDato()
+       {
+
+
+            return ListaBusqueda; 
+            
+             
+       }
+
+        
+
+        #endregion
+    }
+
 }

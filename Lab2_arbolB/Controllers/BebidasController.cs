@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
+using Newtonsoft.Json;
 
 
 namespace Lab2_arbolB.Controllers
@@ -28,7 +28,10 @@ namespace Lab2_arbolB.Controllers
 
         public ActionResult<string> Element()
         {
-            return "";
+            
+            var peli = Arbol.RetornarDato();
+            var json = JsonConvert.SerializeObject(peli);
+            return json;
 
         }
 
@@ -47,6 +50,19 @@ namespace Lab2_arbolB.Controllers
             return BadRequest(ModelState);
         }
 
+        [HttpPost]
+        [Route("api/buscar")]
+
+        public ActionResult Buscar([FromBody] NombreBusqueda sodabusqueda)
+        {
+            if (ModelState.IsValid)
+            {
+                Arbol.Busar(sodabusqueda.Name);
+                return Ok();
+            }
+            return BadRequest();
+           
+        }
 
 
 
