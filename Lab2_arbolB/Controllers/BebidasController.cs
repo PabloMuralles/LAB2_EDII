@@ -12,8 +12,6 @@ namespace Lab2_arbolB.Controllers
  
     public class BebidasController : ControllerBase
     {
-        private static Almacenamiento.ArbolB Arbol = new Almacenamiento.ArbolB();
-
         [HttpGet]
         [Route("api/list")]
 
@@ -39,9 +37,8 @@ namespace Lab2_arbolB.Controllers
         public ActionResult Create([FromBody] Bebidas Soda)
         {
             if (ModelState.IsValid)
-            {
-                
-                Arbol.Add(Soda.Name, Soda.flavor, Soda.inventory, Soda.price, Soda.Made);
+            {               
+              Almacenamiento.ArbolB.Instance.Add(Soda.Name, Soda.flavor, Soda.inventory, Soda.price, Soda.Made);
                 
                 return Ok();
             }
