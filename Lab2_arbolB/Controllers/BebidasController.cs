@@ -50,18 +50,19 @@ namespace Lab2_arbolB.Controllers
             return BadRequest(ModelState);
         }
 
+
         [HttpPost]
         [Route("api/buscar")]
 
-        public ActionResult Buscar([FromBody] NombreBusqueda sodabusqueda)
+        public ActionResult Encontrar([FromBody] NombreBusqueda NameSoda)
         {
             if (ModelState.IsValid)
             {
-                Arbol.Busar(sodabusqueda.Name);
+                Arbol.Busar(NameSoda.Name);
+
                 return Ok();
             }
-            return BadRequest();
-           
+            return BadRequest(ModelState);
         }
 
 

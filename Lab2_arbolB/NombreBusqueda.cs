@@ -9,10 +9,7 @@ namespace Lab2_arbolB
     {
         public string Name { get; set; }
 
-        public NombreBusqueda(string nombre)
-        {
-            Name = nombre;
-        }
+         
    
     }
 }
