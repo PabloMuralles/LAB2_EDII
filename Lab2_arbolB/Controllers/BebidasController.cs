@@ -40,6 +40,7 @@ namespace Lab2_arbolB.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 Arbol.Add(Soda.Name, Soda.flavor, Soda.inventory, Soda.price, Soda.Made);
                 
                 return Ok();

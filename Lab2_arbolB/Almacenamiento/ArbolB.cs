@@ -38,7 +38,7 @@ namespace Lab2_arbolB.Almacenamiento
                 {
                 if (raiz.hijos[0] != null || raiz.hijos[1] != null)
                 {
-                    insert_sheets(N, f, i, p, M,raiz.datos);
+                    insert_sheets(N, f, i, p, M,raiz.datos,raiz);
                 }
                 else
                 {
@@ -126,14 +126,60 @@ namespace Lab2_arbolB.Almacenamiento
                 contador++;
             }
            }
-        public void insert_sheets(string N, string f, int i, double p, string M, Bebidas[] nodo)
+        public void insert_sheets(string N, string f, int i, double p, string M, Bebidas[] nodo,Nodo nuevo)
         {
-            foreach (var item in nodo)
+            int cont = 0;
+            foreach (var item in nodo) ///revisar el foreach con mas numeros
             {
-               if (N.CompareTo(item.Name) > 0)
-               {
-
-               }                
+                #region hijos a la derecha
+                if (N.CompareTo(item.Name) > 0)
+                {
+                    int num = 0;
+                    foreach (var nuevo_espacio in nuevo.hijos[cont + 1].datos)
+                    {
+                        if (nuevo_espacio == null)
+                        {
+                            nuevo.hijos[cont + 1].datos[num] = new Bebidas()
+                            {
+                                Name = N,
+                                flavor = f,
+                                inventory = i,
+                                price = p,
+                                Made = M,
+                            };
+                            break;
+                        }
+                        num++;
+                    }
+                    Ordenar(ref nuevo.hijos[cont + 1].datos);
+                    break;
+                }
+                #endregion                
+                #region hijos a la izquierda
+                else
+                {
+                    int num = 0;
+                    foreach (var nuevo_espacio in nuevo.hijos[cont].datos)
+                    {
+                        if (nuevo_espacio == null)
+                        {
+                            nuevo.hijos[cont].datos[num] = new Bebidas()
+                            {
+                                Name = N,
+                                flavor = f,
+                                inventory = i,
+                                price = p,
+                                Made = M,
+                            };
+                          break;
+                        }
+                        num++;
+                    }
+                        Ordenar(ref nuevo.hijos[cont].datos);
+                        break;
+                }
+                #endregion
+                cont++;
             }
         }
         #endregion
