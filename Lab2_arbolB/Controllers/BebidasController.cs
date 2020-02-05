@@ -46,6 +46,24 @@ namespace Lab2_arbolB.Controllers
         }
 
 
+        [HttpPost]
+        [Route("api/buscar")]
+
+        public ActionResult Buscar([FromBody] NombreBuscar nombre)
+        {
+            if (ModelState.IsValid)
+            {
+                Almacenamiento.ArbolB.Instance.Buscar(nombre.Name);
+
+                return Ok();
+            }
+            return BadRequest(ModelState);
+        }
+
+
+
+
+
 
 
     }

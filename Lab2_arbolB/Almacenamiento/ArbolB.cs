@@ -214,5 +214,11 @@ namespace Lab2_arbolB.Almacenamiento
               Ordenar(ref nuevo.hijos[cont].datos);
             }
         #endregion
+
+
+        public void Buscar(string _nombre)
+        {
+            raiz.Busqueda(_nombre);
+        }
     }    
 }
