@@ -215,10 +215,10 @@ namespace Lab2_arbolB.Almacenamiento
             }
         #endregion
 
-
-        public void Buscar(string _nombre)
+        public Bebidas Buscar(string _nombre)
         {
-            raiz.Busqueda(_nombre);
+            Bebidas bebida = raiz.Busqueda(_nombre);
+            return bebida;
         }
     }    
 }

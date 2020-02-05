@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 
 
@@ -21,16 +22,6 @@ namespace Lab2_arbolB.Controllers
             return "";
         }
 
-        [HttpGet]
-        [Route("api/element")]
-
-        public ActionResult<string> Element()
-        {
-            return "";
-
-        }
-
-
         [HttpPost]
         [Route("api/insert")]
 
@@ -46,16 +37,16 @@ namespace Lab2_arbolB.Controllers
         }
 
 
-        [HttpPost]
-        [Route("api/buscar")]
-
-        public ActionResult Buscar([FromBody] NombreBuscar nombre)
+        [HttpGet]
+        [Route("api/buscar/{nombre}")]
+        public ActionResult Buscar(string nombre)
         {
             if (ModelState.IsValid)
             {
-                Almacenamiento.ArbolB.Instance.Buscar(nombre.Name);
-
-                return Ok();
+                Bebidas bebida = Almacenamiento.ArbolB.Instance.Buscar(nombre);
+                if (bebida != null)
+                    return Ok(bebida);
+                return NotFound();
             }
             return BadRequest(ModelState);
         }
