@@ -214,5 +214,11 @@ namespace Lab2_arbolB.Almacenamiento
               Ordenar(ref nuevo.hijos[cont].datos);
             }
         #endregion
+
+        public Bebidas Buscar(string _nombre)
+        {
+            Bebidas bebida = raiz.Busqueda(_nombre);
+            return bebida;
+        }
     }    
 }
