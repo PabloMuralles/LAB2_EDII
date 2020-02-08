@@ -16,11 +16,9 @@ namespace Lab2_arbolB.Almacenamiento
                     return _instance;
                 }
             }
-            public static int grado = 5;
+            public static int grado = 7;
             public Nodo raiz = null;
-            public Bebidas[] auxiliar = new Bebidas[grado];
-             public Nodo izq = new Nodo();
-             public Nodo der = new Nodo();             
+            public Bebidas[] auxiliar = new Bebidas[grado];             
             #region Metodos          
             public void Add(string N, string f, int i, double p, string M)
             {
@@ -120,15 +118,14 @@ namespace Lab2_arbolB.Almacenamiento
                         asignador++;
                     }
                 }
-                //////////////////
                 else 
-                {
+                {                 
                     inicial.hijos[num_hijos + 1] = new Nodo();
                     foreach (var item in inicial.hijos[num_hijos].datos)
                     {
                         inicial.hijos[num_hijos + 1].datos[asignador] = item;
                         asignador++;
-                    }
+                    }                    
                 }
                 Array.Clear(inicial.hijos[num_hijos+ 1].datos, 0, grado - 1);
             }
@@ -161,14 +158,13 @@ namespace Lab2_arbolB.Almacenamiento
             {
             Array.Clear(inicial.hijos[num_hijos].datos,0,grado-1);
             }            
-            izq.padre = inicial;
-            inicial.hijos[num_hijos] = izq; //index
+           
+            inicial.hijos[num_hijos] = new Nodo(); //index
             for (int llenado_izq = 0; llenado_izq < mitad; llenado_izq++)
             {
                 inicial.hijos[num_hijos].datos[llenado_izq] = nodo2[llenado_izq];                    
-            }
-            der.padre = inicial;
-            inicial.hijos[num_hijos + 1] = der; //index + 1 
+            }          
+            inicial.hijos[num_hijos + 1] = new Nodo(); //index + 1 
             int contador = 0;
             for (int llenado_der = mitad + 1; llenado_der > mitad && llenado_der < nodo2.Length; llenado_der++)
             {
@@ -234,17 +230,18 @@ namespace Lab2_arbolB.Almacenamiento
                     num++;
                     if (num == grado - 1) /// full
                     {
-                         ///// componer tercer nivel
-                        if (cont == grado-1)
-                        {
-                            Aux(N, f, i, p, M, nuevo.hijos[cont].datos);
-                            Nueva_Raiz(auxiliar, nuevo);
-                        }
-                        else
-                        {
+                        ///// componer tercer nivel
+                       // if (nuevo.hijos[cont].padre != null)
+                       // {
+                       //     Aux(N, f, i, p, M, nuevo.hijos[cont].datos);
+                       //    separar(ref nuevo.hijos[cont].datos,auxiliar,nuevo.hijos[cont].padre,cont);
+                       //    Nueva_Raiz(auxiliar, nuevo);
+                       //}
+                        //else
+                        //{
                         Aux(N, f, i, p, M, nuevo.hijos[cont].datos);
-                        separar(ref nuevo.hijos[cont].datos, auxiliar, nuevo.hijos[cont].padre, cont);                       
-                        }
+                        separar(ref nuevo.hijos[cont].datos, auxiliar, nuevo, cont);                       
+                        //}
                     }
                 }
                 Ordenar(ref nuevo.hijos[cont].datos);                  
