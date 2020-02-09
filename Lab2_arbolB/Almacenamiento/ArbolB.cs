@@ -16,7 +16,7 @@ namespace Lab2_arbolB.Almacenamiento
                     return _instance;
                 }
             }
-            public static int grado = 7;
+            public static int grado = 5;
             public Nodo raiz = null;
             public Bebidas[] auxiliar = new Bebidas[grado];             
             #region Metodos          
@@ -105,35 +105,58 @@ namespace Lab2_arbolB.Almacenamiento
             Ordenar(ref auxiliar);
            }
            public void separar(ref Bebidas[] nodo, Bebidas[] nodo2, Nodo inicial, int num_hijos) 
-           {           
+           {
+            if(num_hijos <= grado)
+            {
             if (inicial.hijos[num_hijos] != null)///
             {
                 int asignador = 0;
                 if (num_hijos == 0)
                 {
-                    inicial.hijos[num_hijos+ 2] = new Nodo();
+                    inicial.hijos[num_hijos + 2] = new Nodo();
                     foreach (var item in inicial.hijos[num_hijos + 1].datos)
                     {
                         inicial.hijos[num_hijos + 2].datos[asignador] = item;
                         asignador++;
                     }
                 }
-                else 
-                {                 
+                else
+                {
                     inicial.hijos[num_hijos + 1] = new Nodo();
                     foreach (var item in inicial.hijos[num_hijos].datos)
                     {
                         inicial.hijos[num_hijos + 1].datos[asignador] = item;
                         asignador++;
-                    }                    
+                    }
                 }
-                Array.Clear(inicial.hijos[num_hijos+ 1].datos, 0, grado - 1);
+                Array.Clear(inicial.hijos[num_hijos + 1].datos, 0, grado - 1);
+            }
             }
             int mitad = (nodo2.Length / 2);
             Array.Clear(nodo,0,grado-1);
             int cont = 0;
             foreach (var item in inicial.datos)
             {
+                ///nuevo domingo
+                if (inicial.datos[grado-1] != null)
+                {
+                    var temporal = new Nodo();
+                    int entrada = 0;
+                    foreach (var asignacion in nodos)
+                    {
+                        auxiliar[entrada] = asignacion;
+                        entrada++;
+                    }
+                    auxiliar[entrada] = new Bebidas()
+                    {
+                        Name = N,
+                        flavor = f,
+                        inventory = i,
+                        price = p,
+                        Made = M,
+                    };
+                    Ordenar(ref auxiliar);
+                }
                 if (inicial.datos[0] == null)
                 {
                     inicial.datos[0] = nodo2[mitad];
@@ -141,7 +164,6 @@ namespace Lab2_arbolB.Almacenamiento
                 }
                 if (cont+1>=inicial.datos.Length)
                 {
-                    ///
                     inicial.datos[cont] = nodo2[mitad];
                     Ordenar(ref inicial.datos);
                     break;
@@ -173,7 +195,7 @@ namespace Lab2_arbolB.Almacenamiento
             }
            }
             public void insert_sheets(string N, string f, int i, double p, string M, Bebidas[] nodo,Nodo nuevo)
-        {
+            {
             int cont = 0;
             foreach (var item in nodo)
             {
@@ -212,7 +234,7 @@ namespace Lab2_arbolB.Almacenamiento
             }
         }
             public void asignar(string N, string f, int i, double p, string M,int cont ,int num, Nodo nuevo)
-            {           
+            {
                 foreach (var nuevo_espacio in nuevo.hijos[cont].datos)
                 {
                     if (nuevo_espacio == null)
@@ -229,84 +251,54 @@ namespace Lab2_arbolB.Almacenamiento
                     }
                     num++;
                     if (num == grado - 1) /// full
-                    {
-                        ///// componer tercer nivel
-                       // if (nuevo.hijos[cont].padre != null)
-                       // {
-                       //     Aux(N, f, i, p, M, nuevo.hijos[cont].datos);
-                       //    separar(ref nuevo.hijos[cont].datos,auxiliar,nuevo.hijos[cont].padre,cont);
-                       //    Nueva_Raiz(auxiliar, nuevo);
-                       //}
-                        //else
-                        //{
+                    {                       
                         Aux(N, f, i, p, M, nuevo.hijos[cont].datos);
-                        separar(ref nuevo.hijos[cont].datos, auxiliar, nuevo, cont);                       
-                        //}
-                    }
+                        separar(ref nuevo.hijos[cont].datos, auxiliar, nuevo, cont);                                              
+                    }                         
                 }
                 Ordenar(ref nuevo.hijos[cont].datos);                  
             }
-            public void Nueva_Raiz(Bebidas[] anterior, Nodo root)
-            {
-               var aux = new Nodo();
-               var momento = new Bebidas[grado];
-               var hijo_izq = new Bebidas[grado -1];
-               var hijo_der = new Bebidas[grado -1];
-                int mitad = (anterior.Length / 2);
-             int mitad_hijos = grado / 2;
-                aux.datos[0] = anterior[mitad];
-               aux.hijos[1] = new Nodo();
-                for (int x = 0; x < mitad; x++)
+              public void Nueva_Raiz(Bebidas[] anterior,Bebidas[] concatenacion, int num_hijo, Nodo root)
+              {
+                var nuevo = new Nodo();
+               var temporal = new Bebidas[grado - 1];
+               int mitad = (concatenacion.Length/2);
+               Array.Clear(anterior, 0, grado - 1);               
+                 temporal = concatenacion;
+                Aux(anterior[mitad].Name,anterior[mitad].flavor, anterior[mitad].inventory, anterior[mitad].price, anterior[mitad].Made,root.padre.datos);               
+            if (nuevo.datos[0] == null)
+                {
+                nuevo.datos[0] = auxiliar[mitad];
+                }              
+                nuevo.hijos[0] = new Nodo(); //index
+                 for (int llenado_izq = 0; llenado_izq < mitad; llenado_izq++)
                  {
-                  aux.hijos[1].datos[x] = anterior[x];
+                nuevo.hijos[0].datos[llenado_izq] = auxiliar[llenado_izq];
                  }
-            aux.hijos[2] = new Nodo();
+            nuevo.hijos[0 + 1] = new Nodo(); //index + 1 
             int contador = 0;
-               for (int y = mitad + 1; y > mitad && y < anterior.Length; y++)
-               {
-                aux.hijos[2].datos[contador] = anterior[y];
-                contador++;
-               }
-            int num = 0;
-            aux.hijos[0] = new Nodo();
-                 foreach (var item in root.hijos[mitad_hijos + 1].datos)
-                 {
-                   aux.hijos[0].datos[num] = item;
-                   num++;
-                 }
-            int entrar = 0;
-               foreach (var item in root.datos)
-               {
-                momento[entrar] = item;
-                    entrar++;
-               }
-              momento[entrar] = aux.datos[0];
-              Ordenar(ref momento);
-              mitad = momento.Length / 2;
-             hijo_izq = root.hijos[0].datos;
-             hijo_der = root.hijos[1].datos;
-              Array.Clear(root.datos, 0, grado - 1);
-              root.datos[0] = momento[mitad];
-               for (int Nx = 0; Nx < mitad; Nx++)
-               {
-                root.hijos[0].datos[Nx] = momento[Nx];
-               }
-              int start = 0;
-            for (int Ny = mitad + 1; Ny > mitad && Ny < momento.Length; Ny++)
+            for (int llenado_der = mitad + 1; llenado_der > mitad && llenado_der < auxiliar.Length; llenado_der++)
             {
-                root.hijos[1].datos[start] = momento[Ny];
-                start++;
+                nuevo.hijos[0 + 1].datos[contador] = auxiliar[llenado_der];
+                contador++;
             }
-            ////////////////////
-              root.hijos[0].padre = root;
-              root.hijos[1].padre = root;
-              raiz.hijos[0].padre = root.hijos[0];
-              raiz.hijos[1].padre = root.hijos[0];
-              raiz.hijos[2].padre = root.hijos[0];
-              aux.hijos[0].padre = root.hijos[1];
-              aux.hijos[1].padre = root.hijos[2];
-              aux.hijos[2].padre = root.hijos[2];
+            raiz.datos = nuevo.datos;
+            raiz.hijos[0] = nuevo.hijos[0];
+            raiz.hijos[1] = nuevo.hijos[1];
+            
+            ///separar izq
+               if (num_hijo < mitad)
+                {
+                nuevo.hijos[0].hijos[0] = raiz.hijos[0];
+                }
+                if (num_hijo == mitad)
+                {
 
+                }
+                if (num_hijo > mitad)
+                {
+
+                }
         }
         #endregion
 
