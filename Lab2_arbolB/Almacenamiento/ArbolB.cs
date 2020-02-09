@@ -220,5 +220,85 @@ namespace Lab2_arbolB.Almacenamiento
             Bebidas bebida = raiz.Busqueda(_nombre);
             return bebida;
         }
-    }    
+
+        #region retornar prueba 1
+        //List<Bebidas> Registro = new List<Bebidas>();
+        //public List<Bebidas> RetornarInformacion1(Nodo Raiz)
+        //{
+        //    if (raiz!=null)
+        //    {
+        //        for (int i = 0; i < grado; i++)
+        //        {
+        //            Registro.Add(new Bebidas
+        //            {
+        //                Name = raiz.datos[i].Name,
+        //                flavor = raiz.datos[i].flavor,
+        //                inventory = raiz.datos[i].inventory,
+        //                price = raiz.datos[i].price,
+        //                Made = raiz.datos[i].Made
+
+        //            });
+
+        //            RetornarInformacion(izq);
+        //            RetornarInformacion(der);
+                    
+
+        //        }
+        //        return Registro;
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+           
+          
+
+
+        //}
+
+
+        //public List<Bebidas> InicioBusqueda()
+        //{
+  
+        //    return RetornarInformacion(raiz);
+        //}
+
+        #endregion
+
+        #region Recorrido
+
+
+        public List<Bebidas> Registros = new List<Bebidas>();
+        public void RetornoInformacion(Nodo Raiz)
+        {
+            if (Raiz!=null)
+            {
+                for (int i = 0; i < grado; i++)
+                {
+                    RetornoInformacion(raiz.hijos[0]);
+                    foreach (var item in raiz.datos)
+                    {
+                        Registros.Add(item);
+                    }
+                    
+
+                }
+            }
+           
+
+        }
+
+        public List<Bebidas> IngresarRetorno()
+        {
+            RetornoInformacion(raiz);
+
+            return Registros;
+
+        }
+
+
+
+        #endregion
+
+    }
 }
