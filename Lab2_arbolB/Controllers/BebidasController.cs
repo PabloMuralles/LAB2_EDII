@@ -13,14 +13,7 @@ namespace Lab2_arbolB.Controllers
  
     public class BebidasController : ControllerBase
     {
-        [HttpGet]
-        [Route("api/list")]
-
-        public ActionResult<string> List()
-        {
-
-            return "";
-        }
+   
 
         [HttpPost]
         [Route("api/insert")]
@@ -51,6 +44,21 @@ namespace Lab2_arbolB.Controllers
             return BadRequest(ModelState);
         }
 
+
+
+
+        [HttpGet]
+        [Route("api/registro")]
+        public ActionResult<string> Registro()
+        {
+           
+            
+                
+                var json = JsonConvert.SerializeObject(Almacenamiento.ArbolB.Instance.IngresarRetorno());
+                return json;
+            
+             
+        }
 
 
 

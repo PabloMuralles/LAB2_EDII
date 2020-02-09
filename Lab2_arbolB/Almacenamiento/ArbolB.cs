@@ -315,5 +315,76 @@ namespace Lab2_arbolB.Almacenamiento
             Bebidas bebida = raiz.Busqueda(_nombre);
             return bebida;
         }
-    }    
+
+ 
+
+        #region Recorrido
+
+
+        public List<Bebidas> Registros = new List<Bebidas>();
+        public void RetornoInformacion(Nodo RaizResgistro)
+        {
+            if (RaizResgistro.hijos[0]==null)
+            {
+                foreach (var item in RaizResgistro.datos)
+                {
+                    if (item != null)
+                    {
+                        Registros.Add(item);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < grado; i++)
+                {
+
+                     
+                    if (RaizResgistro.hijos[i]!=null)
+                    {
+                        RetornoInformacion(RaizResgistro.hijos[i]);
+
+                        if (RaizResgistro.datos[i]!=null)
+                        {
+
+                            Registros.Add(RaizResgistro.datos[i]);
+
+                        }
+
+
+                    }
+                    else
+                    {
+                        
+
+                        break;
+                    }
+                     
+                }
+            }
+           
+
+        }
+
+        public List<Bebidas> IngresarRetorno()
+        {
+            RetornoInformacion(raiz);
+
+            return Registros;
+
+            
+
+            
+
+        }
+
+
+
+        #endregion
+
+    }
 }
