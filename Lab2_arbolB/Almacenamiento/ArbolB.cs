@@ -106,7 +106,7 @@ namespace Lab2_arbolB.Almacenamiento
            }
            public void separar(ref Bebidas[] nodo, Bebidas[] nodo2, Nodo inicial, int num_hijos) 
            {
-            if(num_hijos <= grado)
+            if(num_hijos < grado - 1)
             {
             if (inicial.hijos[num_hijos] != null)///
             {
@@ -122,7 +122,10 @@ namespace Lab2_arbolB.Almacenamiento
                 }
                 else
                 {
-                    inicial.hijos[num_hijos + 1] = new Nodo();
+                        if (num_hijos != 4)
+                        {
+                         inicial.hijos[num_hijos + 1] = new Nodo();
+                        }
                     foreach (var item in inicial.hijos[num_hijos].datos)
                     {
                         inicial.hijos[num_hijos + 1].datos[asignador] = item;
@@ -138,24 +141,20 @@ namespace Lab2_arbolB.Almacenamiento
             foreach (var item in inicial.datos)
             {
                 ///nuevo domingo
-                if (inicial.datos[grado-1] != null)
+                if (inicial.datos[grado-2] != null)
                 {
-                    var temporal = new Nodo();
+                    var temporal = new Bebidas[grado];
+                    var Nueva_raiz = new Nodo();
                     int entrada = 0;
-                    foreach (var asignacion in nodos)
+                    foreach (var asignacion in inicial.datos)
                     {
-                        auxiliar[entrada] = asignacion;
+                        temporal[entrada]= asignacion;
                         entrada++;
                     }
-                    auxiliar[entrada] = new Bebidas()
-                    {
-                        Name = N,
-                        flavor = f,
-                        inventory = i,
-                        price = p,
-                        Made = M,
-                    };
-                    Ordenar(ref auxiliar);
+                    temporal[entrada] = auxiliar[mitad];                    
+                    Ordenar(ref temporal);
+                    Nueva_raiz.datos[0] = temporal[mitad];
+                    inicial.padre = Nueva_raiz;
                 }
                 if (inicial.datos[0] == null)
                 {
