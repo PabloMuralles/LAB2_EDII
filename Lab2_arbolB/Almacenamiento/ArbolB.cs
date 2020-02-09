@@ -316,67 +316,54 @@ namespace Lab2_arbolB.Almacenamiento
             return bebida;
         }
 
-        #region retornar prueba 1
-        //List<Bebidas> Registro = new List<Bebidas>();
-        //public List<Bebidas> RetornarInformacion1(Nodo Raiz)
-        //{
-        //    if (raiz!=null)
-        //    {
-        //        for (int i = 0; i < grado; i++)
-        //        {
-        //            Registro.Add(new Bebidas
-        //            {
-        //                Name = raiz.datos[i].Name,
-        //                flavor = raiz.datos[i].flavor,
-        //                inventory = raiz.datos[i].inventory,
-        //                price = raiz.datos[i].price,
-        //                Made = raiz.datos[i].Made
-
-        //            });
-
-        //            RetornarInformacion(izq);
-        //            RetornarInformacion(der);
-                    
-
-        //        }
-        //        return Registro;
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-           
-          
-
-
-        //}
-
-
-        //public List<Bebidas> InicioBusqueda()
-        //{
-  
-        //    return RetornarInformacion(raiz);
-        //}
-
-        #endregion
+ 
 
         #region Recorrido
 
 
         public List<Bebidas> Registros = new List<Bebidas>();
-        public void RetornoInformacion(Nodo Raiz)
+        public void RetornoInformacion(Nodo RaizResgistro)
         {
-            if (Raiz!=null)
+            if (RaizResgistro.hijos[0]==null)
             {
-                for (int i = 0; i < grado; i++)
+                foreach (var item in RaizResgistro.datos)
                 {
-                    RetornoInformacion(raiz.hijos[0]);
-                    foreach (var item in raiz.datos)
+                    if (item != null)
                     {
                         Registros.Add(item);
                     }
-                    
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < grado; i++)
+                {
 
+                     
+                    if (RaizResgistro.hijos[i]!=null)
+                    {
+                        RetornoInformacion(RaizResgistro.hijos[i]);
+
+                        if (RaizResgistro.datos[i]!=null)
+                        {
+
+                            Registros.Add(RaizResgistro.datos[i]);
+
+                        }
+
+
+                    }
+                    else
+                    {
+                        
+
+                        break;
+                    }
+                     
                 }
             }
            
@@ -388,6 +375,10 @@ namespace Lab2_arbolB.Almacenamiento
             RetornoInformacion(raiz);
 
             return Registros;
+
+            
+
+            
 
         }
 
