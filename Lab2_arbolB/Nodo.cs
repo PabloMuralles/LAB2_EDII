@@ -23,22 +23,30 @@ namespace Lab2_arbolB
                 {
                     if (String.Compare(nombre, datos[i].Name) == -1)
                     {
-                        hijos[i].Busqueda(nombre);
+                        if (hijos[0]!=null)
+                        {
+                            hijos[i].Busqueda(nombre);
+                        }
+                        
                     }
 
                     if (String.Compare(nombre, datos[i].Name) == 1)
                     {
-                        if (datos[i + 1] == null)
+                        if (hijos[0]!=null)
                         {
-                            hijos[i + 1].Busqueda(nombre);
-                        }
-                        else
-                        {
-                            if (String.Compare(nombre, datos[i + 1].Name) == -1)
+                            if (datos[i + 1] == null)
                             {
-                                hijos[i].Busqueda(nombre);
+                                hijos[i + 1].Busqueda(nombre);
+                            }
+                            else
+                            {
+                                if (String.Compare(nombre, datos[i + 1].Name) == -1)
+                                {
+                                    hijos[i].Busqueda(nombre);
+                                }
                             }
                         }
+                        
                     }
 
 

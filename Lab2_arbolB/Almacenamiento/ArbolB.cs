@@ -318,13 +318,17 @@ namespace Lab2_arbolB.Almacenamiento
 
 
 
+
         #region Recorrido
 
 
         public List<Bebidas> Registros = new List<Bebidas>();
         public void RetornoInformacion(Nodo RaizResgistro)
         {
-            if (RaizResgistro.hijos[0] == null)
+
+
+            if (RaizResgistro.hijos[0]==null)
+
             {
                 foreach (var item in RaizResgistro.datos)
                 {
@@ -344,11 +348,13 @@ namespace Lab2_arbolB.Almacenamiento
                 {
 
 
-                    if (RaizResgistro.hijos[i] != null)
+                     
+                    if (RaizResgistro.hijos[i]!=null)
                     {
                         RetornoInformacion(RaizResgistro.hijos[i]);
 
-                        if (RaizResgistro.datos[i] != null)
+                        if (RaizResgistro.datos[i]!=null)
+
                         {
 
                             Registros.Add(RaizResgistro.datos[i]);
@@ -360,12 +366,14 @@ namespace Lab2_arbolB.Almacenamiento
                     else
                     {
 
+                        
 
                         break;
                     }
-
+                     
                 }
             }
+           
 
 
         }
@@ -380,8 +388,6 @@ namespace Lab2_arbolB.Almacenamiento
 
 
 
-
-
         }
 
 
@@ -389,4 +395,4 @@ namespace Lab2_arbolB.Almacenamiento
         #endregion
 
     }
-}
+
