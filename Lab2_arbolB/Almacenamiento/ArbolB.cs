@@ -377,6 +377,7 @@ namespace Lab2_arbolB.Almacenamiento
         public List<Bebidas> IngresarRetorno()
         {
             Registros.Clear();
+
             RetornoInformacion(raiz);
 
             return Registros;
