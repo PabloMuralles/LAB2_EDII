@@ -347,13 +347,16 @@ namespace Lab2_arbolB.Almacenamiento
                     if (RaizResgistro.hijos[i]!=null)
                     {
                         RetornoInformacion(RaizResgistro.hijos[i]);
-
-                        if (RaizResgistro.datos[i]!=null)
+                        if (i!=6)
                         {
+                            if (RaizResgistro.datos[i] != null)
+                            {
 
-                            Registros.Add(RaizResgistro.datos[i]);
+                                Registros.Add(RaizResgistro.datos[i]);
 
+                            }
                         }
+                        
 
 
                     }
