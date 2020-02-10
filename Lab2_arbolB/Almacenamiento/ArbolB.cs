@@ -16,7 +16,7 @@ namespace Lab2_arbolB.Almacenamiento
                     return _instance;
                 }
             }
-            public static int grado = 5;
+            public static int grado = 7;
             public Nodo raiz = null;
             public Bebidas[] auxiliar = new Bebidas[grado];             
             #region Metodos          
@@ -140,7 +140,6 @@ namespace Lab2_arbolB.Almacenamiento
             int cont = 0;
             foreach (var item in inicial.datos)
             {
-                ///nuevo domingo
                 if (inicial.datos[grado-2] != null)
                 {
                     var temporal = new Bebidas[grado];
@@ -151,10 +150,11 @@ namespace Lab2_arbolB.Almacenamiento
                         temporal[entrada]= asignacion;
                         entrada++;
                     }
-                    temporal[entrada] = auxiliar[mitad];                    
+                    temporal[entrada] = auxiliar[mitad];                   
                     Ordenar(ref temporal);
                     Nueva_raiz.datos[0] = temporal[mitad];
                     inicial.padre = Nueva_raiz;
+                   
                 }
                 if (inicial.datos[0] == null)
                 {
@@ -284,20 +284,7 @@ namespace Lab2_arbolB.Almacenamiento
             raiz.datos = nuevo.datos;
             raiz.hijos[0] = nuevo.hijos[0];
             raiz.hijos[1] = nuevo.hijos[1];
-            
-            ///separar izq
-               if (num_hijo < mitad)
-                {
-                nuevo.hijos[0].hijos[0] = raiz.hijos[0];
-                }
-                if (num_hijo == mitad)
-                {
-
-                }
-                if (num_hijo > mitad)
-                {
-
-                }
+         
         }
         #endregion
 
