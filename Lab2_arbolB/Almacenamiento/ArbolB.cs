@@ -347,7 +347,8 @@ namespace Lab2_arbolB.Almacenamiento
                     if (RaizResgistro.hijos[i]!=null)
                     {
                         RetornoInformacion(RaizResgistro.hijos[i]);
-                        if (i!=6)
+                      
+                        if (i!=(grado-1))
                         {
                             if (RaizResgistro.datos[i] != null)
                             {
@@ -375,6 +376,7 @@ namespace Lab2_arbolB.Almacenamiento
 
         public List<Bebidas> IngresarRetorno()
         {
+            Registros.Clear();
             RetornoInformacion(raiz);
 
             return Registros;
